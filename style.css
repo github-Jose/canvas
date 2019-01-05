@@ -1,27 +1,58 @@
+*{margin: 0;padding: 0;}
+ul, ol{list-style: none;}
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
 body {
     font-family: sans-serif;
     margin: 0;
     padding: 0;
-  }
-  #app {
+}
+#app {
     height: 100vh;
     width: 100vw;
     background: antiquewhite;
-  }
-  canvas {
+}
+canvas {
     display: block;
-  }
-  .actions {
+}
+.actions {
     position: fixed;
-    top: 0;
-    left: 0;
-  }
-  .actions > #brush {
-    display: none;
-  }
-  .actions.x > #brush {
-    display: inline-block;
-  }
-  .actions.x > #erase {
-    display: none;
-  }
+    top: 10px;
+    left: 10px;
+}
+.actions > svg {
+    margin-right: 10px;
+    transition: all 0.3s;
+}
+.actions > svg.active {
+    fill:red;
+    transform: scale(1.2);
+}
+ol {
+    position: fixed;
+    top: 40px;
+    left: 10px;
+}
+ol li {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+}
+ol li#red{
+    background-color: red;
+}
+ol li#green{
+    background-color: green;
+}
+ol li#blue{
+    background-color: blue;
+}
+ol li.active {
+    transform: scale(1.2);
+}

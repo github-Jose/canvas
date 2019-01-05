@@ -5,8 +5,13 @@ var using = false;
 var lastPoint = { x: undefined, y: undefined };
 //画笔和橡皮擦
 var action = document.getElementById("actions");
-var brush = document.getElementById("brush");
-var erase = document.getElementById("erase");
+var pen = document.getElementById('pen')
+var erase = document.getElementById('erase')
+var red = document.getElementById('red')
+var green = document.getElementById('green')
+var blue = document.getElementById('blue')
+// var brush = document.getElementById("brush");
+// var erase = document.getElementById("erase");
 
 // 设置canvas宽高
 autoSetCanvasSize();
@@ -18,13 +23,33 @@ lisenToUseing();
 var eraseing = false;
 erase.onclick = function () {
     eraseing = true;
-    console.log(action);
-    action.className = "actions x";
+    erase.classList.add('active')
+    pen.classList.remove('active')
 };
-brush.onclick = function () {
+pen.onclick = function () {
     eraseing = false;
-    action.className = "actions";
+    pen.classList.add('active')
+    erase.classList.remove('active')
 };
+// 切换画笔颜色
+red.onclick = function () {
+    content.strokeStyle = "red";    
+    red.classList.add('active')
+    green.classList.remove('active')
+    blue.classList.remove('active')
+}
+green.onclick = function () {
+    content.strokeStyle = "green";    
+    red.classList.remove('active')
+    green.classList.add('active')
+    blue.classList.remove('active')
+}
+blue.onclick = function () {
+    content.strokeStyle = "blue";
+    red.classList.remove('active')
+    green.classList.remove('active')
+    blue.classList.add('active')
+}
 //画圆
 function drawCircle(x, y, radius) {
     content.beginPath();
@@ -36,7 +61,6 @@ function drawCircle(x, y, radius) {
 // 划线
 function drawLine(x1, y1, x2, y2) {
     content.beginPath();
-    content.strokeStyle = "red";
     content.lineWidth = 5;
     content.moveTo(x1, y1);
     content.lineTo(x2, y2);

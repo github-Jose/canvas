@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html lang="zn-hans">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>我的画板</title>
     <link rel="stylesheet" href="./style.css">
+    <script src="//at.alicdn.com/t/font_1000773_kv9j7wu9cy.js"></script>
 </head>
+
 <body>
     <div id="app">
         <canvas id="canvas"></canvas>
         <div class="actions" id="actions">
-            <button id="brush">画笔</button>
-            <button id="erase">橡皮擦</button>
+            <svg class="icon active" aria-hidden="true" id="pen">
+                <use xlink:href="#icon-pen"></use>
+            </svg>
+            <svg class="icon" aria-hidden="true" id="erase">
+                <use xlink:href="#icon-ico-magicerasertool-"></use>
+            </svg>
         </div>
+        <ol>
+            <li id="red" class="active"></li>
+            <li id="green"></li>
+            <li id="blue"></li>
+        </ol>
     </div>
 </body>
 <script src="./index.js"></script>
+
 </html>
