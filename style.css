@@ -32,17 +32,20 @@ canvas {
     fill:red;
     transform: scale(1.2);
 }
-ol {
+ol.color {
     position: fixed;
     top: 40px;
     left: 10px;
 }
-ol li {
+ol.color li {
     width: 20px;
     height: 20px;
     border-radius: 50%;
     margin-bottom: 15px;
     transition: all 0.3s;
+}
+ol li#black{
+    background-color: black;
 }
 ol li#red{
     background-color: red;
@@ -55,4 +58,22 @@ ol li#blue{
 }
 ol li.active {
     transform: scale(1.2);
+}
+.rangeFarent {
+    position: fixed;
+    top:20px;
+    right: 10px;
+    width: 40px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.range {
+    -webkit-appearance: none;
+    width: 22px;
+    -webkit-appearance: slider-vertical;
+}
+input[type='range']::-webkit-slider-runnable-track{  
+    background-color: #eee;
 }

@@ -1,31 +1,40 @@
 <!DOCTYPE html>
 <html lang="zn-hans">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>我的画板</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="//at.alicdn.com/t/font_1000773_kv9j7wu9cy.js"></script>
+    <script src="//at.alicdn.com/t/font_1000773_lbbrib5w5a.js"></script>
 </head>
 
 <body>
     <div id="app">
         <canvas id="canvas"></canvas>
         <div class="actions" id="actions">
-            <svg class="icon active" aria-hidden="true" id="pen">
+            <svg class="icon active" id="pen">
                 <use xlink:href="#icon-pen"></use>
             </svg>
-            <svg class="icon" aria-hidden="true" id="erase">
+            <svg class="icon" id="erase">
                 <use xlink:href="#icon-ico-magicerasertool-"></use>
             </svg>
+            <svg class="icon" id="clear">
+                <use xlink:href="#icon-clear"></use>
+            </svg>
+            <svg class="icon" id="download">
+                <use xlink:href="#icon-download"></use>
+            </svg>
         </div>
-        <ol>
-            <li id="red" class="active"></li>
+        <ol class="color">
+            <li id="black" class="active"></li>
+            <li id="red"></li>
             <li id="green"></li>
             <li id="blue"></li>
         </ol>
+        <div class="rangeFarent">
+            <input type="range" min="2" max="30" step="1" class="range" value="2" id="range">
+        </div>
     </div>
 </body>
 <script src="./index.js"></script>

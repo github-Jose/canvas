@@ -7,9 +7,14 @@ var lastPoint = { x: undefined, y: undefined };
 var action = document.getElementById("actions");
 var pen = document.getElementById('pen')
 var erase = document.getElementById('erase')
+var black = document.getElementById('black')
 var red = document.getElementById('red')
 var green = document.getElementById('green')
 var blue = document.getElementById('blue')
+var clear = document.getElementById('clear')
+var download = document.getElementById('download')
+var range =document.getElementById('range')
+var lineWidth = range.value
 // var brush = document.getElementById("brush");
 // var erase = document.getElementById("erase");
 
@@ -32,23 +37,50 @@ pen.onclick = function () {
     erase.classList.remove('active')
 };
 // 切换画笔颜色
+black.onclick = function () {
+    content.strokeStyle = "black";    
+    black.classList.add('active')
+    red.classList.remove('active')
+    green.classList.remove('active')
+    blue.classList.remove('active')
+}
 red.onclick = function () {
     content.strokeStyle = "red";    
     red.classList.add('active')
+    black.classList.remove('active')
     green.classList.remove('active')
     blue.classList.remove('active')
 }
 green.onclick = function () {
     content.strokeStyle = "green";    
+    black.classList.remove('active')
     red.classList.remove('active')
     green.classList.add('active')
     blue.classList.remove('active')
 }
 blue.onclick = function () {
     content.strokeStyle = "blue";
+    black.classList.remove('active')
     red.classList.remove('active')
     green.classList.remove('active')
     blue.classList.add('active')
+}
+// 保存和下载
+clear.onclick = function () {
+    content.clearRect(0, 0, paint.width, paint.height);
+}
+download.onclick = function () {
+    var url = paint.toDataURL("image/png")
+    var a = document.createElement('a');
+    app.appendChild(a);
+    a.href = url;
+    a.download = '超好看'
+    a.click()
+    app.removeChild(a)
+}
+// 画笔粗细
+range.onchange = function () {
+    lineWidth = range.value
 }
 //画圆
 function drawCircle(x, y, radius) {
@@ -61,7 +93,7 @@ function drawCircle(x, y, radius) {
 // 划线
 function drawLine(x1, y1, x2, y2) {
     content.beginPath();
-    content.lineWidth = 5;
+    content.lineWidth = lineWidth;
     content.moveTo(x1, y1);
     content.lineTo(x2, y2);
     content.stroke();
