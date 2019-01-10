@@ -186,6 +186,13 @@ function lisenToUseing() {
     };
 
     app.onmousemove = function (e) {
+        if (!Collapse) {
+            eraseing = false
+            up.classList.add('hidden')
+            down.classList.remove('hidden')
+            range.classList.add('hidden')
+            Collapse = true
+        }
         var x = e.clientX;
         var y = e.clientY;
         if (!using) {
