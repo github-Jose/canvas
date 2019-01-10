@@ -15,15 +15,35 @@ var clear = document.getElementById('clear')
 var download = document.getElementById('download')
 var range =document.getElementById('range')
 var lineWidth = range.value
+var Collapse = true
 // var brush = document.getElementById("brush");
 // var erase = document.getElementById("erase");
 
+// 禁止滚动
+function stopScrolling(event) {
+    event.preventDefault();
+}
+document.addEventListener('touchmove',stopScrolling,false);
 // 设置canvas宽高
 autoSetCanvasSize();
 
 //监听用戶操作
 lisenToUseing();
-
+// 画笔大小调节空间显隐
+down.onclick = function () {
+    eraseing = true;
+    Collapse = false;
+    down.classList.add('hidden')
+    up.classList.remove('hidden')
+    range.classList.remove('hidden')
+}
+up.onclick = function () {
+    eraseing = false
+    Collapse = true;
+    up.classList.add('hidden')
+    down.classList.remove('hidden')
+    range.classList.add('hidden')
+}
 // 画笔和橡皮擦切换
 var eraseing = false;
 erase.onclick = function () {
@@ -106,7 +126,9 @@ function autoSetCanvasSize() {
     };
     function canvasSize() {
         var pageWidth = document.documentElement.clientWidth;
+        // var pageWidth=window.innerWidth|| document.documentElement.clientWidth || document.body.clientWidth;
         var pageHeight = document.documentElement.clientHeight;
+        // var pageHeight=window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         paint.width = pageWidth;
         paint.height = pageHeight;
     }
@@ -115,11 +137,18 @@ function autoSetCanvasSize() {
 function lisenToUseing() {
     if ('ontouchstart' in document.body) {
         app.ontouchstart = function (e) {
+            if (!Collapse) {
+                eraseing = false
+                up.classList.add('hidden')
+                down.classList.remove('hidden')
+                range.classList.add('hidden')
+                Collapse = true
+            }
             var x = e.touches[0].clientX;
             var y = e.touches[0].clientY;
             using = true;
             if (eraseing) {
-                content.clearRect(x - 5, y - 5, 10, 10);
+                content.clearRect(x - 5, y - 5, 15, 15);
             } else {
                 // drawCircle(x, y, 1);
                 lastPoint = { x: x, y: y };
@@ -132,7 +161,7 @@ function lisenToUseing() {
                 return;
             }
             if (eraseing) {
-                content.clearRect(x - 5, y - 5, 10, 10);
+                content.clearRect(x - 5, y - 5, 15, 15);
             } else {
                 var newPoint = { x: x, y: y };
                 drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y);
@@ -149,7 +178,7 @@ function lisenToUseing() {
         var y = e.clientY;
         using = true;
         if (eraseing) {
-            content.clearRect(x - 5, y - 5, 10, 10);
+            content.clearRect(x - 5, y - 5, 15, 15);
         } else {
             // drawCircle(x, y, 1);
             lastPoint = { x: x, y: y };
@@ -163,7 +192,7 @@ function lisenToUseing() {
             return;
         }
         if (eraseing) {
-            content.clearRect(x - 5, y - 5, 10, 10);
+            content.clearRect(x - 5, y - 5, 15, 15);
         } else {
             var newPoint = { x: x, y: y };
             drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y);

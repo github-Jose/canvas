@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 启用webapp全屏模式 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- uc强制全屏 -->
+    <meta name="full-screen" content="yes">
     <title>我的画板</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="//at.alicdn.com/t/font_1000773_lbbrib5w5a.js"></script>
+    <script src="//at.alicdn.com/t/font_1000773_j6x96ofna2c.js"></script>
 </head>
 
 <body>
@@ -32,9 +38,15 @@
             <li id="green"></li>
             <li id="blue"></li>
         </ol>
-        <div class="rangeFarent">
-            <input type="range" min="2" max="30" step="1" class="range" value="2" id="range">
-        </div>
+    </div>
+    <div class="rangeFarent">
+        <svg class="icon arrowIcon hidden" id="up">
+            <use xlink:href="#icon-Arrowup"></use>
+        </svg>
+        <svg class="icon arrowIcon" id="down">
+            <use xlink:href="#icon-Arrowdown"></use>
+        </svg>
+        <input type="range" min="2" max="30" step="1" class="range hidden" value="2" id="range">
     </div>
 </body>
 <script src="./index.js"></script>
