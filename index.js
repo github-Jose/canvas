@@ -18,7 +18,7 @@ var lineWidth = range.value
 var Collapse = true
 // var brush = document.getElementById("brush");
 // var erase = document.getElementById("erase");
-
+paint.getContext('2d').imageSmoothingEnabled = true;
 // 禁止滚动
 function stopScrolling(event) {
     event.preventDefault();
@@ -174,6 +174,13 @@ function lisenToUseing() {
         }
     }
     app.onmousedown = function (e) {
+        if (!Collapse) {
+            eraseing = false
+            up.classList.add('hidden')
+            down.classList.remove('hidden')
+            range.classList.add('hidden')
+            Collapse = true
+        }
         var x = e.clientX;
         var y = e.clientY;
         using = true;
@@ -186,13 +193,6 @@ function lisenToUseing() {
     };
 
     app.onmousemove = function (e) {
-        if (!Collapse) {
-            eraseing = false
-            up.classList.add('hidden')
-            down.classList.remove('hidden')
-            range.classList.add('hidden')
-            Collapse = true
-        }
         var x = e.clientX;
         var y = e.clientY;
         if (!using) {
